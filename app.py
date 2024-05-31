@@ -55,3 +55,9 @@ if st.button('Get Fare Prediction'):
         st.write(f'Estimated Fare: ${prediction}')
     else:
         st.write('Error: Failed to retrieve prediction')
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<div id="map" style="height: 400px;"></div>
