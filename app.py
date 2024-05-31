@@ -57,7 +57,22 @@ if st.button('Get Fare Prediction'):
         st.write('Error: Failed to retrieve prediction')
 
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+import requests
+from flask import Flask, request, jsonify, render_template
 
-<div id="map" style="height: 400px;"></div>
+app = Flask(__name__)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Replace 'your_api_url' with your prediction API URL
+    url = 'https://your_api_url/predict'
+    # Collect data from form or API call
+    data = request.get_json(force=True)
+    # Send data to prediction API
+    response = requests.post(url, json=data)
+    prediction = response.json()
+
+    return render_template('result.html', prediction=prediction)
+
+if __name__ == '__main__':
+    app.run(debug=True)
