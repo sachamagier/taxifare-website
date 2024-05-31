@@ -55,24 +55,3 @@ if st.button('Get Fare Prediction'):
         st.write(f'Estimated Fare: ${prediction}')
     else:
         st.write('Error: Failed to retrieve prediction')
-
-
-import requests
-from flask import Flask, request, jsonify, render_template
-
-app = Flask(__name__)
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Replace 'your_api_url' with your prediction API URL
-    url = 'https://your_api_url/predict'
-    # Collect data from form or API call
-    data = request.get_json(force=True)
-    # Send data to prediction API
-    response = requests.post(url, json=data)
-    prediction = response.json()
-
-    return render_template('result.html', prediction=prediction)
-
-if __name__ == '__main__':
-    app.run(debug=True)
